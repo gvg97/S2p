@@ -1,0 +1,157 @@
+<div class="container mt-4">
+    <span class="titulo">API de Usuários</span>
+    <hr class="mb-4">
+
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" (input)="this.Identity = $event.target.value" placeholder="Pesquisar" aria-label="Pesquisar">
+                <a (click)="carregar(this.Identity)" class="btn btn-outline-info my-2 my-sm-0"><i class="fas fa-search"></i></a>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="table table-hover">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Forma de Pagamento </th>
+                    <th>Status de Pagamento</th>
+                    <th>Valor da Venda</th>
+                    <th>Referência</th>
+                    <th>Data de Pagamento</th>
+                    <th>Data de Solicitacao</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dado of lista">
+                    <td>{{dado.id}}</td>
+                    <td>{{dado.formaPagamento}}</td>
+                    <td>{{dado.statusPagamento}}</td>
+                    <td>{{dado.valorVenda}}</td>
+                    <td>{{dado.referencia }}</td>
+                    <td>{{dado.dataPagamento}}</td>
+                    <td>{{dado.dataDeSolicitacao}}</td>
+                    <td>
+                        <a data-toggle="modal" data-target="#modal" title="Ver detalhes da transação" (click)="mostrarTransacao(dado.nomeEmpresa,
+                         dado.nomeFantasia, dado.nomeCliente, dado.id, dado.antiFraudRecommendation, dado.callbackUrl, dado.documentoCliente,
+                         dado.emailCliente, dado.documentoEmpresa, dado.idMerchant)"><i class="far fa-eye" role="button"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Transação: {{Id}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8" *ngIf="this.NomeEmpresa !== ''">
+                            <h5>Nome da empresa</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">{{NomeEmpresa}}</div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8" *ngIf="this.NomeFantasia !== ''">
+                            <h5>Nome Fantasia</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-8 ">{{NomeFantasia}}</div>
+                    </div>
+                </div>
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-sm-8 ">
+                            <h5>Nome do cliente</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-8 ">{{NomeCliente}}</div>
+                    </div>
+                </div>
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-sm-8 " *ngIf="this.AntiFraudRecommendation !== ''">
+                            <h5>antifraudrecommendation</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-8 ">{{AntiFraudRecommendation}}</div>
+                    </div>
+                </div>
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-sm-8 " *ngIf="this.CallbackUrl !== ''">
+                            <h5>Callbackurl</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-8 ">{{CallbackUrl}}</div>
+                    </div>
+                </div>
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-sm-8 " *ngIf="this.DocumentoCliente !== ''">
+                            <h5>CPF/CNPJ</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-8 ">{{DocumentoCliente}}</div>
+                    </div>
+                </div>
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-sm-8 " *ngIf="this.EmailCliente !== ''">
+                            <h5>Email do Cliente</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-8 ">{{EmailCliente}}</div>
+                    </div>
+                </div>
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-sm-8 " *ngIf="this.DocumentoEmpresa !== ''">
+                            <h5>Documento do Emissor Da cobrança</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-8 ">{{DocumentoEmpresa}}</div>
+                    </div>
+                </div>
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-sm-8 " *ngIf="this.IdMerchant !== ''">
+                            <h5>IdMerchant</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-8 ">{{IdMerchant}}</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer ">
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

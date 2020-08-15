@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\S2pDAO\S2pDAO.csproj" />
+    <ProjectReference Include="..\S2pEntities\S2pEntities.csproj" />
+  </ItemGroup>
+
+</Project>
